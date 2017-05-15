@@ -5,6 +5,25 @@
 //  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Floating-point_literals
 //  Infinity, NaN
 
+// Primitive
+let number = 15
+console.log(number) //=> 15
+console.log(typeof number) //=> number
+
+// Number
+let number = Number(15)
+console.log(number) //=> 15
+console.log(typeof number) //=> number
+
+// OO
+let number = new Number(15)
+console.log(number) //=> [Number: 15]
+console.log(typeof number) //=> object
+
+let number = new Number(017)
+console.log(number) //=> [Number: 15]
+console.log(typeof number) //=> object
+
 /**** NUMBER PROPERTIES ****/
 // Number.MIN_SAFE_INTEGER
 console.log(Number.MIN_SAFE_INTEGER) //=> -9007199254740991 = -(2ˆ53 - 1)

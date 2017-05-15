@@ -10,9 +10,8 @@ let cep = {
   gia: "1004"
 }
 
-Object.values(cep)
-Object.keys(cep)
-
+// Object.values(cep)
+// Object.keys(cep)
 for(let key of Object.keys(cep)){
   console.log(`${key} -> ${cep[key]}`)
 }

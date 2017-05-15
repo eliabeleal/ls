@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+hide circle
+
+class Order {
+    items: Array<Item>
+    total(): Number
+}
+
+class Item {
+    quantity: Number
+    product: Product
+}
+Order -- Item
+
+class Product {
+    id: Number
+    name: String
+    price: Number
+}
+Item -- Product
+
+@enduml

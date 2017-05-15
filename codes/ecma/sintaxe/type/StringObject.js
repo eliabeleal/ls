@@ -2,6 +2,21 @@
 //  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#String_literals
 //  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 
+// Primitive
+let string = 'lorem ipsum'
+console.log(string) //=> 'lorem ipsum'
+console.log(typeof string) //=> string
+
+// String
+let string = String('lorem ipsum')
+console.log(string) //=> 'lorem ipsum'
+console.log(typeof string) //=> string
+
+// OO
+let string = new String('lorem ipsum')
+console.log(string) //=> [String: 'lorem ipsum']
+console.log(typeof string) //=> object
+
 /**** STRING METHODS ****/
 // String.fromCharCode()
 console.log(String.fromCharCode(65)) //=> A

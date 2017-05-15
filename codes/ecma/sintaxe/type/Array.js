@@ -9,7 +9,6 @@ console.log(numbers[3]) //=> 7
 console.log(numbers[4]) //=> undefined
 console.log(numbers)    //=> [ 1, 2, 4, 7 ]
 
-
 // Changing Array
 let numbers = [1, 2, 4, 7]
 // changing value
@@ -96,52 +95,3 @@ for(let value of values){
 // '1'
 // '20'
 // '10'
-
-let ips = [
-  {address: "192.168.0.2", mask: "255.255.255.0"},
-  {address: "192.168.0.10", mask: "255.255.255.0"},
-  {address: "192.168.0.26", mask: "255.255.255.0"},
-  {address: "192.168.0.30", mask: "255.255.255.0"}
-]
-for(let ip of ips){
-  console.log(ip.address+'/'+ip.mask)
-}
-//=>
-// 192.168.0.2/255.255.255.0
-// 192.168.0.10/255.255.255.0
-// 192.168.0.26/255.255.255.0
-// 192.168.0.30/255.255.255.0
-
-let ips = [
-  {address: "192.168.0.2", mask: "255.255.255.0"},
-  {address: "192.168.0.10", mask: "255.255.255.0"},
-  {address: "192.168.0.26", mask: "255.255.255.0"},
-  {address: "192.168.0.30", mask: "255.255.255.0"}
-]
-let row = ''
-for(let ip of ips){
-  for(let key of Object.keys(ip)){
-    row += ip[key]+' '
-  }
-}
-console.log(row) //=> 192.168.0.2 255.255.255.0 192.168.0.10 255.255.255.0 192.168.0.26 255.255.255.0 192.168.0.30 255.255.255.0
-
-let ips = [
-  {address: "192.168.0.2", mask: "255.255.255.0"},
-  {address: "192.168.0.10", mask: "255.255.255.0"},
-  {address: "192.168.0.26", mask: "255.255.255.0"},
-  {address: "192.168.0.30", mask: "255.255.255.0"}
-]
-result = '<table>\n'
-for(let ip of ips){
-  result += '  <tr><td>'+ip.address+'</td><td>'+ip.mask+'</td></tr>\n'
-}
-result += '</table>\n'
-console.log(result)
-//=>
-// <table>
-//   <tr><td>192.168.0.2</td><td>255.255.255.0</td></tr>
-//   <tr><td>192.168.0.10</td><td>255.255.255.0</td></tr>
-//   <tr><td>192.168.0.26</td><td>255.255.255.0</td></tr>
-//   <tr><td>192.168.0.30</td><td>255.255.255.0</td></tr>
-// </table>
