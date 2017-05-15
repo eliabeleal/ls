@@ -44,13 +44,13 @@ for(let flag = 0; flag < 100; flag++){
     console.log(flag)
 }
 
-let result = '';
+let result = ''
 for(let flag = 0; flag < 100; flag++){
     result += (flag < 10)? '0' + flag + ' ' : flag + ' '
     if((flag + 1) % 10 == 0)
       result += '\n'
 }
-console.log(result);
+console.log(result)
 
 //  for...of: Iterates over iterable objects (including arrays, array-like objects, iterators and generators)
 let numbers = [1, 2, 3, 4]
