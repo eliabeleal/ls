@@ -62,25 +62,35 @@ ibge: 3550308,
 gia: 1004
 ```
 
-## calc (+, -, *, /)
+## calc
 ```
-calc(1, 1, '+')
-//=> 2
+// operator: '+', '-', '*', '/'
+function calc(operand1, operand2, operator){
+  // TODO
+}
 
-calc(1, 1, '*')
-//=> 1
+console.log(calc(1, 1, '+')) //=> 2
+console.log(calc(1, 1, '*')) //=> 1
 ```
 
 ## min
 ```
-min([1, 4, 2, 6, 10, 3])
-//=> 1
+function min(array){
+  // TODO
+}
+
+let array = [1, 4, 2, 6, 10, 3]
+console.log(min(array)) //=> 1
 ```
 
 ## max
 ```
-max([1, 4, 2, 6, 10, 3])
-//=> 10
+function max(array){
+  // TODO
+}
+
+let array = [1, 4, 2, 6, 10, 3]
+console.log(max(array)) //=> 10
 ```
 
 ## range
