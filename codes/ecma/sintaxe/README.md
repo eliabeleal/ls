@@ -1,7 +1,7 @@
 # EcmaScript
 
 * [Variable](declarationVariable.js)
-* Tipos:
+* Types:
   * Primitive
     * [Boolean](type/Boolean.js)
     * [Null](type/Null.js)

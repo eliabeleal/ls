@@ -128,4 +128,11 @@ order.addProduct(pencil)
 order.addProduct(pen)
 order.addProduct(notebook)
 console.log(order.total()) //=> 26
+
+// total by category?
 ```
+
+## Sugestões
+
+* [Exercism](http://exercism.io/languages/ecmascript/exercises)
+* [Javscript Koan](https://github.com/mrdavidlaing/javascript-koans)
