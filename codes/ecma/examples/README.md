@@ -39,12 +39,19 @@ DOM SEG TER QUA QUI SEX SAB
 
 ## Hamming
 ```
-GGACG  diff 1
-GGTCG
-  ˆ
-GGACGGATTCTG   diff 9
-AGGACGGATTCT
-ˆ ˆˆˆ ˆˆ ˆˆˆ
+function hamming(){
+  // TODO
+}
+
+let dna1 = 'GGACG'
+let dna2 = 'GGTCG'
+              ˆ
+console.log(hamming(dna1, dna2)) //=> 1
+
+dna1 = 'GGACGGATTCTG
+dna2 = 'AGGACGGATTCT
+        ˆ ˆˆˆ ˆˆ ˆˆˆ
+console.log(hamming(dna1, dna2)) //=> 9
 ```
 
 ## CEP
@@ -109,12 +116,19 @@ range(0, 30, 5);
 ```
 zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])
 //=> [["moe", 30, true], ["larry", 40, false], ["curly", 50, false]]
+
+zip(['moe', 'larry'], [30, 40])
+//=> [["moe", 30], ["larry", 40]]
 ```
 
 ## uniq
 ```
 uniq([1, 2, 1, 4, 1, 3])
 //=> [1, 2, 4, 3]
+
+
+uniq([1, 2, 1, 3, 3])
+//=> [1, 2, 3]
 ```
 
 ## random
@@ -124,6 +138,9 @@ Math.random()
 
 random(0, 100)
 //=> 42
+
+let people = ['Fulano', 'Beltrano' , 'Sicrano']
+console.log(people[random(0, people.length - 1)])
 ```
 
 ## Order

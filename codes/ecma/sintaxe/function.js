@@ -117,15 +117,17 @@ console.log(addition(1))          //=> 1 ([1])
 console.log(addition(1, 1))       //=> 2 ([1, 1])
 console.log(addition(1, 1, 1, 1)) //=> 4 ([1, 1, 1, 1])
 
-function addition(param, ...params){
-  let summation = 0
-  for(let value of params){
-    summation += value
+// operato: '+', '*'
+function calc(operator, ...params){
+  let result = operator == '+' ? 0 : 1
+  for(let arg of params){
+    result = operator == '+' ? result + arg : result * arg
   }
-  return summation + param
+  return result
 }
-console.log(addition(1, 1))       //=> 2 (1, [1])
-console.log(addition(1, 1, 1, 1)) //=> 4 (1, [1, 1, 1])
+console.log(calc('+', 1))       //=> 1 ('+', [1])
+console.log(calc('+', 1, 1))    //=> 2 ('+', [1, 1])
+console.log(calc('*', 1, 1, 1)) //=> 1 ('*', [1, 1, 1])
 
 // Function expression / anonymous function
 function(param1, param2){
