@@ -102,13 +102,15 @@ console.log(max(array)) //=> 10
 
 ## range
 ```
-range(10)
+// TODO function range
+
+console.log(range(10))
 //=> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-range(1, 11);
+console.log(range(1, 11))
 //=> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-range(0, 30, 5);
+console.log(range(0, 30, 5))
 //=> [0, 5, 10, 15, 20, 25]
 ```
 
