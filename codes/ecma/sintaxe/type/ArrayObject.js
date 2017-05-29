@@ -58,8 +58,8 @@ console.log(numbers)            //=> [ 3, 2, 1 ]
 
 // Array.prototype.sort
 let numbers = [3, 1, 2]
-console.log(numbers.sort())     //=> [ 3, 2, 1 ]
-console.log(numbers)            //=> [ 3, 2, 1 ]
+console.log(numbers.sort())     //=> [ 1, 2, 3 ]
+console.log(numbers)            //=> [ 1, 2, 3 ]
 
 // Array.prototype.splice
 let numbers = [1, 2, 3]

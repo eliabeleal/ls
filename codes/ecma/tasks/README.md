@@ -145,6 +145,16 @@ let people = ['Fulano', 'Beltrano' , 'Sicrano']
 console.log(people[random(0, people.length - 1)])
 ```
 
+```
+let name = 'Luiz Carlos Rodrigues Chaves'
+
+console.log(citationName(name))
+//=> 'Chaves; Luiz Carlos Rodribues'
+
+console.log(citationCompactName(name))
+//=> 'Chaves; L. C. R.'
+```
+
 ## Order
 ```
 pencil = new Product(1, "Lápis", 1.5)
