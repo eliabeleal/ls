@@ -10,10 +10,9 @@ const citationName = function(name){
 
 const citationCompactName = function(name){
   let rersult = ''
-  words = name
-            .split(' ')
-            .map(word => `${word.toUpperCase()}.`)
+  words = name.split(' ')
   lastWord = words.pop().toUpperCase()
+  words = words.map(word => `${word[0].toUpperCase()}.`)
   result = `${lastWord}; ${words.join(' ')}`
   return result
 }
