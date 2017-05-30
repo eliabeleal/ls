@@ -158,36 +158,6 @@ console.log(citationCompactName(name))
 
 ## Order
 ```
-class Product{
-  constructor(id, name, price, categories){
-    this.id = id
-    this.name = name
-    this.price = price || 0.0
-    this.categories = categories || []
-  }
-}
-
-class Order {
-  constructor(){
-    this.products = []
-  }
-
-  addProduct(product){
-    this.products.push(product)
-  }
-
-  total(){
-    return this.products
-            .reduce((sum, product) => sum + product.price, 0)
-  }
-
-  totalByCategory(category){
-    return this.products
-            .filter(product => product.categories.includes(category))
-            .reduce((sum, product) => sum + product.price, 0)
-  }
-}
-
 pencil = new Product(1, 'Lápis', 1.5)
 pen  = new Product(2, 'Caneta', 3)
 notebook = new Product(3, 'Caderno', 20)
