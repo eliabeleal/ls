@@ -1,24 +1,31 @@
-let name = 'Luiz Carlos Rodrigues Chaves'
-
 const citationName = function(name){
-  let rersult = ''
-  words = name.split(' ')
-  lastWord = words.pop().toUpperCase()
-  result = `${lastWord}; ${words.join(' ')}`
+  let result = ''
+  let words = name.split(' ')
+  let lastWord = words.pop()
+  lastWord = lastWord.toUpperCase()
+  words = words.join(' ')
+  result = `${lastWord}; ${words}`
   return result
 }
 
-const citationCompactName = function(name){
-  let rersult = ''
-  words = name.split(' ')
-  lastWord = words.pop().toUpperCase()
-  words = words.map(word => `${word[0].toUpperCase()}.`)
-  result = `${lastWord}; ${words.join(' ')}`
-  return result
-}
-
+let name = 'Luiz Carlos Rodrigues Chaves'
 console.log(citationName(name))
 //=> 'CHAVES; Luiz Carlos Rodribues'
 
+const citationCompactName = function(name){
+  let result = ''
+  let words = name.split(' ')
+  let lastWord = words.pop()
+  lastWord = lastWord.toUpperCase()
+  // for(let index in words){
+  //   words[index] = `${words[index][0].toUpperCase()}.`
+  // }
+  words = words.map(word => `${word[0].toUpperCase()}.`)
+  words = words.join(' ')
+  result = `${lastWord}; ${words}`
+  return result
+}
+
+name = 'Luiz Carlos Rodrigues Chaves'
 console.log(citationCompactName(name))
 //=> 'CHAVES; L. C. R.'
