@@ -105,6 +105,36 @@ console.log(prime(2, 10)) //=> 2, 3, 5, 7
 console.log(prime(2, 20)) //=> 2, 3, 5, 7, 11, 13, 17, 19
 ```
 
+## Area of Circle
+```
+// A = πr²
+let radius = 10
+console.log(areaOfCircle(radius)) //=> 314.16
+
+radius = 20
+console.log(areaOfCircle(radius)) //=> 1256.64
+```
+
+## Factorial
+```
+console.log(factorial(4)) //=> 24
+console.log(factorial(6)) //=> 720
+```
+
+## Fibonacci
+```
+console.log(fibonacci(4)) //=> 0, 1, 1, 2
+console.log(fibonacci(6)) //=> 0, 1, 1, 2, 3, 5
+```
+
+## Prime numbers
+```
+console.log(prime(4))     //=> 2, 3, 5, 7
+console.log(prime(6))     //=> 2, 3, 5, 7, 11, 13
+console.log(prime(2, 10)) //=> 2, 3, 5, 7
+console.log(prime(2, 20)) //=> 2, 3, 5, 7, 11, 13, 17, 19
+```
+
 ## Hamming
 ```
 function hamming(){
