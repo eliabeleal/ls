@@ -1,5 +1,34 @@
 # Exercícios
 
+## Body mass index (BMI)
+Category | BMI
+-|-
+Underweight | <18.5
+Normal weight | 18.5–24.9
+Overweight | 25–29.9
+Obesity | BMI of 30 or greater
+
+```
+// BMI = weight/height²
+let height = 1.5
+let weight = 60
+```
+
+## IRRF 2017
+
+Base de cálculo mensal em R$ | Alíquota % | Parcela a deduzir do imposto em R$
+-----------------------------|------------|-----------------------------------
+Até 1.903,98 | – | –
+De 1.903,99 até 2.826,65 | 7,5| 142,80
+De 2.826,66 até 3.751,05 | 15,0 | 354,80
+De 3.751,06 até 4.664,68 | 22,5 | 636,13
+Acima de 4.664,68	| 27,5 | 869,36
+https://www.tabeladoirrf.com.br/tabela-irrf-2017.html
+
+```
+let salary = 3500.5
+```
+
 ## numbers
 ```
 00 01 02 03 04 05 06 07 08 09
@@ -27,6 +56,12 @@
 09 08 07 06 05 04 03 02 01 00
 ```
 
+```
+// h = 1/1 + 1/2 + ... + 1/n
+
+let n = 10
+```
+
 ## calendar
 ```
 DOM SEG TER QUA QUI SEX SAB
@@ -35,6 +70,36 @@ DOM SEG TER QUA QUI SEX SAB
  14  15  16  17  18  19  20
  21  22  23  24  25  26  27
  28  29  30  31
+```
+
+## Area of Circle
+```
+// A = πr²
+let radius = 10
+console.log(areaOfCircle(radius)) //=> 314.16
+
+radius = 20
+console.log(areaOfCircle(radius)) //=> 1256.64
+```
+
+## Factorial
+```
+console.log(factorial(4)) //=> 24
+console.log(factorial(6)) //=> 720
+```
+
+## Fibonacci
+```
+console.log(fibonacci(4)) //=> 0, 1, 1, 2
+console.log(fibonacci(6)) //=> 0, 1, 1, 2, 3, 5
+```
+
+## Prime numbers
+```
+console.log(prime(4))     //=> 2, 3, 5, 7
+console.log(prime(6))     //=> 2, 3, 5, 7, 11, 13
+console.log(prime(2, 10)) //=> 2, 3, 5, 7
+console.log(prime(2, 20)) //=> 2, 3, 5, 7, 11, 13, 17, 19
 ```
 
 ## Hamming
@@ -155,6 +220,156 @@ console.log(citationName(name))
 console.log(citationCompactName(name))
 //=> 'CHAVES; L. C. R.'
 ```
+
+## Triangle Checker
+```
+console.log(triangleChecker(2, 2, 2))    //=> equilateral
+console.log(triangleChecker(10, 10, 10)) //=> equilateral
+
+console.log(triangleChecker(3, 4, 4))    //=> isosceles
+console.log(triangleChecker(4, 3, 4))    //=> isosceles
+console.log(triangleChecker(4, 4, 3))    //=> isosceles
+console.log(triangleChecker(10, 10, 2))  //=> isosceles
+
+console.log(triangleChecker(3, 4, 5))    //=> scalene
+console.log(triangleChecker(10, 11, 12)) //=> scalene
+console.log(triangleChecker(5, 4, 2))    //=> scalene
+
+console.log(triangleChecker(0, 0, 0))    //=> none
+console.log(triangleChecker(3, 4, -5))   //=> none
+console.log(triangleChecker(1, 1, 3))    //=> none
+console.log(triangleChecker(2, 4, 2))    //=> none
+```
+
+## Triangle Text
+```
+console.log(triangleText(1))
+//=>
+// #
+
+console.log(triangleText(2))
+//=>
+// #
+// ##
+
+console.log(triangleText(3))
+//=>
+// #
+// ##
+// ###
+
+console.log(halfDiamondText(1))
+//=>
+// #
+
+console.log(halfDiamondText(2))
+//=>
+// #
+// ##
+// #
+
+console.log(halfDiamondText(3))
+//=>
+// #
+// ##
+// ###
+// ##
+// #
+
+console.log(diamondText(1))
+//=>
+// #
+
+console.log(diamondText(2))
+//=>
+//  #
+// ###
+//  #
+
+console.log(diamondText(3))
+//=>
+//   #
+//  ###
+// #####
+//  ###
+//   #
+```
+
+## Sum & Product
+```
+let array = [1, 2, 3]
+console.log(sumArray(array)) //=> 6
+
+array = [2, 2, 2]
+console.log(sumArray(array)) //=> 6
+
+array = [1, 2, 3, 4, 5, 6]
+console.log(sumArray(array)) //=> 21
+
+array = [1, 2, 3]
+console.log(productArray(array)) //=> 6
+
+array = [2, 2, 2]
+console.log(productArray(array)) //=> 8
+
+array = [1, 2, 3, 4, 5, 6]
+console.log(productArray(array)) //=> 720
+```
+
+## Sum odds
+```
+let array = [1, 2, 3]
+console.log(sumArrayOdd(array)) //=> 3
+
+array = [2, 2, 2]
+console.log(sumArrayOdd(array)) //=> 0
+
+array = [1, 2, 3, 4, 5, 6]
+console.log(sumArrayOdd(array)) //=> 15
+```
+
+## String to Number
+```
+let char = 'A'
+let hexa = char.charCodeAt().toString(16)
+console.log(hexa) //=> 41
+
+char = '0x41'
+hexa = String.fromCharCode(parseInt(char, 16))
+console.log(hexa) //=> 'A'
+
+console.log(str2hex('AB'))       //=> '41 42'
+console.log(str2hex('ABC'))      //=> '41 42 43'
+console.log(hex2str('41 42'))    //=> 'AB'
+console.log(hex2str('41 42 43')) //=> 'ABC'
+
+console.log(str2bin('AB'))                         //=> '01000001 01000010'
+console.log(str2bin('ABC'))                        //=> '01000001 01000010 01000011'
+console.log(bin2str('01000001 01000010'))          //=> 'AB'
+console.log(bin2str('01000001 01000010 01000011')) //=> 'ABC'
+
+console.log(str2dec('AB'))       //=> '65 66'
+console.log(str2dec('ABC'))      //=> '65 66 67'
+console.log(dec2str('65 66'))    //=> 'AB'
+console.log(dec2str('65 66 67')) //=> 'ABC'
+```
+
+## Average
+```
+students = [
+  {"student": "Fulano", "grade": 10},
+  {"student": "Sicrano", "grade": 5},
+  {"student": "Beltrano", "grade": 7},
+]
+
+console.log(calcAverage(students)) //=> 7.3
+```
+
+## Apply bold
+let text = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
+
+console.log(applyBold(text, 'ipsum'))
+//=> Lorem <b>ipsum</b> dolor sit amet, consectetur adipisicing elit
 
 ## Order
 ```
