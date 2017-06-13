@@ -254,7 +254,8 @@ Primeiramente multiplica-se os 9 primeiros dígitos pela sequência decrescente 
 | - | - | - | - | - | - | - | - | - | - |
 | Valor de 10 até 2 para multiplicar	  | 10| 9	| 8	| 7	| 6	| 5	| 4	| 3	| 2 |
 | Resultado da multiplicação            | 10 | 18 | 24 | 28 | 30 | 30 | 28 | 24 | 18 |
-| Total: <td colspan="9">210</span>
+
+**Total: 210**
 
 O próximo passo da verificação basta multiplicarmos o valor `Total` por 10 e dividirmos por 11:
 
@@ -270,7 +271,8 @@ A validação do segundo dígito é semelhante à primeira, porém vamos multipl
 | - | - | - | - | - | - | - | - | - | - | - |
 | Valor de 11 até 2 para multiplicar	| 11	| 10	| 9	| 8	| 7	| 6	| 5	| 4	| 3	| 2 |
 | Resultado da multiplicação	| 11	| 20	| 27	| 32	| 35	| 36	| 35	| 32	| 27	| 0 |
-| Total: <td colspan="10">255</span>
+
+**Total: 255**
 
 O próximo passo da verificação basta multiplicarmos o valor `Total` por 10 e dividirmos por 11:
 
@@ -286,10 +288,10 @@ validateCPF('12345678909') //=> true
 
 ## Table Convert .md to .html
 ```
-const table = `| Header One     | Header Two     |
-| :------------- | :------------- |
-| Item One       | Item Two       |
-`
+const table =
+  `| Header One     | Header Two     |
+   | :------------- | :------------- |
+   | Item One       | Item Two       |`
 
 console.log(tablemd2html(table))
 //=>
