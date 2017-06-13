@@ -30,7 +30,7 @@ https://www.tabeladoirrf.com.br/tabela-irrf-2017.html
 let salary = 3500.5
 ```
 
-## numbers
+## Numbers
 ```
 00 01 02 03 04 05 06 07 08 09
 10 11 12 13 14 15 16 17 18 19
@@ -105,36 +105,6 @@ console.log(prime(2, 10)) //=> 2, 3, 5, 7
 console.log(prime(2, 20)) //=> 2, 3, 5, 7, 11, 13, 17, 19
 ```
 
-## Area of Circle
-```
-// A = πr²
-let radius = 10
-console.log(areaOfCircle(radius)) //=> 314.16
-
-radius = 20
-console.log(areaOfCircle(radius)) //=> 1256.64
-```
-
-## Factorial
-```
-console.log(factorial(4)) //=> 24
-console.log(factorial(6)) //=> 720
-```
-
-## Fibonacci
-```
-console.log(fibonacci(4)) //=> 0, 1, 1, 2
-console.log(fibonacci(6)) //=> 0, 1, 1, 2, 3, 5
-```
-
-## Prime numbers
-```
-console.log(prime(4))     //=> 2, 3, 5, 7
-console.log(prime(6))     //=> 2, 3, 5, 7, 11, 13
-console.log(prime(2, 10)) //=> 2, 3, 5, 7
-console.log(prime(2, 20)) //=> 2, 3, 5, 7, 11, 13, 17, 19
-```
-
 ## Hamming
 ```
 function hamming(){
@@ -167,7 +137,7 @@ ibge: 3550308,
 gia: 1004
 ```
 
-## calc
+## Calc
 ```
 // operator: '+', '-', '*', '/'
 function calc(operand1, operand2, operator){
@@ -178,7 +148,7 @@ console.log(calc(1, 1, '+')) //=> 2
 console.log(calc(1, 1, '*')) //=> 1
 ```
 
-## min
+## Min
 ```
 function min(array){
   // TODO
@@ -188,7 +158,7 @@ let array = [1, 4, 2, 6, 10, 3]
 console.log(min(array)) //=> 1
 ```
 
-## max
+## Max
 ```
 function max(array){
   // TODO
@@ -198,7 +168,7 @@ let array = [1, 4, 2, 6, 10, 3]
 console.log(max(array)) //=> 10
 ```
 
-## range
+## Range
 ```
 // TODO function range
 
@@ -212,7 +182,7 @@ console.log(range(0, 30, 5))
 //=> [0, 5, 10, 15, 20, 25]
 ```
 
-## zip
+## Zip
 ```
 zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])
 //=> [["moe", 30, true], ["larry", 40, false], ["curly", 50, false]]
@@ -221,7 +191,7 @@ zip(['moe', 'larry'], [30, 40])
 //=> [["moe", 30], ["larry", 40]]
 ```
 
-## uniq
+## Uniq
 ```
 uniq([1, 2, 1, 4, 1, 3])
 //=> [1, 2, 4, 3]
@@ -231,7 +201,7 @@ uniq([1, 2, 1, 3, 3])
 //=> [1, 2, 3]
 ```
 
-## random
+## Random
 ```
 Math.random()
 //=> 0.058464593778000395
@@ -272,6 +242,125 @@ console.log(triangleChecker(0, 0, 0))    //=> none
 console.log(triangleChecker(3, 4, -5))   //=> none
 console.log(triangleChecker(1, 1, 3))    //=> none
 console.log(triangleChecker(2, 4, 2))    //=> none
+```
+
+## Validing CPF
+
+**Validação do primeiro dígito**
+
+Primeiramente multiplica-se os 9 primeiros dígitos pela sequência decrescente de números de 10 à 2 e soma os resultados. Então cosiderando o **CPF** 123.456.789-09 temos:
+
+| Nove primeiros dígitos antes do traço |	1	| 2	| 3	| 4	| 5	| 6	| 7	| 8	| 9 |
+| - | - | - | - | - | - | - | - | - | - |
+| Valor de 10 até 2 para multiplicar	  | 10| 9	| 8	| 7	| 6	| 5	| 4	| 3	| 2 |
+| Resultado da multiplicação            | 10 | 18 | 24 | 28 | 30 | 30 | 28 | 24 | 18 |
+| Total: <td colspan="9">210</span>
+
+O próximo passo da verificação basta multiplicarmos o valor `Total` por 10 e dividirmos por 11:
+
+Resto = (210 * 10) % 11 = 10
+
+Se o `Resto` for igual ao primeiro dígito verificador, a primeira parte da validação está correta. Contudo, se o `Resto` for igual a 10 ou 11, então ele será 0.
+
+**Validação do segundo dígito**
+
+A validação do segundo dígito é semelhante à primeira, porém vamos multiplicar esses 10 números pela sequencia decrescente de 11 a 2:
+
+| Dez primeiros dígitos	| 1	| 2	| 3	| 4	| 5	| 6	| 7	| 8	| 9	| 0 |
+| - | - | - | - | - | - | - | - | - | - | - |
+| Valor de 11 até 2 para multiplicar	| 11	| 10	| 9	| 8	| 7	| 6	| 5	| 4	| 3	| 2 |
+| Resultado da multiplicação	| 11	| 20	| 27	| 32	| 35	| 36	| 35	| 32	| 27	| 0 |
+| Total: <td colspan="10">255</span>
+
+O próximo passo da verificação basta multiplicarmos o valor `Total` por 10 e dividirmos por 11:
+
+Resto = (255 * 10) % 11 = 9
+
+Se o `Resto` for igual ao segundo dígito verificador, a segunda parte da validação está correta. Contudo, se o `Resto` for igual a 10 ou 11, então ele será 0.
+
+**Obs:** http://www.dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/
+
+```
+validateCPF('12345678909') //=> true
+```
+
+## Table Convert .md to .html
+```
+const table = `| Header One     | Header Two     |
+| :------------- | :------------- |
+| Item One       | Item Two       |
+`
+
+console.log(tablemd2html(table))
+//=>
+// <table>
+//   <thead>
+//     <tr>
+//       <th>Header One</th>
+//       <th>Header Two</th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     <tr>
+//       <td>Item One</td>
+//       <td>Item Two</td>
+//     </tr>
+//   </tbody>
+// </table>
+
+```
+
+## Matrices
+
+```
+// Adding a Matrix by Another Matrix
+let a = [[3, 8], [4, 6]]
+let b = [[4, 0], [1, -9]]
+console.log(addingMatrix(a, b)) //=> [[7, 8], [5, -3]]
+
+// Multiplying a Matrix by Another Matrix
+let a = [[1, 2, 3], [4, 5, 6]]
+let b = [[7, 8], [9, 10], [11, 12]]
+console.log(multiplyingMatrix(a, b)) //=> [[58, 64], [139, 154]]
+```
+
+## Diff Timestamp (ms)
+```
+let last = 1483239600000 // (new Date(2017, 0, 1)).getTime()
+let now  = 1496762425846 // Date.now()
+
+diffMonth(last, now) //=> 5
+```
+
+## IP
+```
+ip2decimal(192.168.0.1) //=> 3232235521
+ip2decimal(192.168.0.2) //=> 3232235522
+
+decimal2ip(3232235521) //=> 192.168.0.1
+decimal2ip(3232235522) //=> 192.168.0.2
+```
+
+## Min withdraw
+```
+withdraw(1280) //=> [[100, 12], [50, 1], [20, 1], [10, 1]]
+```
+
+## Exam
+```
+studend1 = {q1: 'a', q2: 'b', q3: 'b', q4: 'b', q5: 'b'}
+studend1 = {q1: 'c', q2: 'b', q3: 'a', q4: 'c', q5: 'd'}
+weight =   {q1:  2 , q2:  2 , q3:  2 , q4:  2 , q5:  2 }
+answer =   {q1: 'a', q2: 'b', q3: 'a', q4: 'c', q5: 'd'}
+
+weightedAvg(studend1, weight, answer) //=> 4
+weightedAvg(studend2, weight, answer) //=> 8
+```
+
+
+## Cipher
+```
+console.log(rot('abc', 2)) //=> cde
 ```
 
 ## Figure Text
@@ -350,6 +439,64 @@ console.log(boardText(4))
 //  # #
 ```
 
+## Brazilian Championship A Series 2016
+
+Team | MP | W | D | L | GF | GA | GD | PTS
+---- | -- | - | - | - | -- | -- | -- | ---
+Palmeiras | 38 | 24 | 8 | 6 | 62 | 32 | 30 | 80
+Santos | 38 | 22 | 5 | 11 | 59 | 35 | 24 | 71
+Flamengo | 38 | 20 | 11 | 7 | 52 | 35 | 17 | 71
+Atlético Mineiro | 38 | 17 | 11 | 10 | 61 | 53 | 8 | 62
+Botafogo | 38 | 17 | 8 | 13 | 43 | 39 | 4 | 59
+Atlético-PR | 38 | 17 | 6 | 15 | 38 | 32 | 6 | 57
+Corinthians | 38 | 15 | 10 | 13 | 48 | 42 | 6 | 55
+Ponte Preta | 38 | 15 | 8 | 15 | 48 | 52 | -4 | 53
+Grêmio | 38 | 14 | 11 | 13 | 41 | 44 | -3 | 53
+São Paulo | 38 | 14 | 10 | 14 | 44 | 36 | 8 | 52
+Chapecoense | 38 | 13 | 13 | 12 | 49 | 56 | -7 | 52
+Cruzeiro | 38 | 14 | 9 | 15 | 48 | 49 | -1 | 51
+Fluminense | 38 | 13 | 11 | 14 | 45 | 45 | 0 | 50
+Sport Recife | 38 | 13 | 8 | 17 | 49 | 55 | -6 | 47
+Coritiba | 38 | 11 | 13 | 14 | 41 | 42 | -1 | 46
+Vitória | 38 | 12 | 9 | 17 | 51 | 53 | -2 | 45
+Internacional | 38 | 11 | 10 | 17 | 35 | 41 | -6 | 43
+Figueirense | 38 | 8 | 13 | 17 | 30 | 50 | -20 | 37
+Santa Cruz | 38 | 8 | 7 | 23 | 45 | 69 | -24 | 31
+América-MG | 38 | 7 | 7 | 24 | 23 | 58 | -35 | 28
+
+Legend: (MP) Matches played, (W) Wins, (D) Draws, (L) Losses, (GF) Goals for, (GA) Goals against, (GD) Goals difference, (PTS) Team points, (RC) Red Cards, (YC) Yellow Cards
+
+Teams are ranked by PTS, W, GD, and GF. If points are equal between two or more clubs, the rules are W, GD, GF, head-to-head record, RC, YC.
+
+```
+cont standings = // TODO
+console.log(firstTeam(standings))
+//=> Chapecoense
+
+console.log(showStading(standings))
+//=>
+Palmeiras        | 38 | 24 |  8 |  6 | 62 | 32 |  30 | 80
+Santos           | 38 | 22 |  5 | 11 | 59 | 35 |  24 | 71
+Flamengo         | 38 | 20 | 11 |  7 | 52 | 35 |  17 | 71
+Atlético Mineiro | 38 | 17 | 11 | 10 | 61 | 53 |   8 | 62
+Botafogo         | 38 | 17 |  8 | 13 | 43 | 39 |   4 | 59
+Atlético-PR      | 38 | 17 |  6 | 15 | 38 | 32 |   6 | 57
+Corinthians      | 38 | 15 | 10 | 13 | 48 | 42 |   6 | 55
+Ponte Preta      | 38 | 15 |  8 | 15 | 48 | 52 |  -4 | 53
+Grêmio           | 38 | 14 | 11 | 13 | 41 | 44 |  -3 | 53
+São Paulo        | 38 | 14 | 10 | 14 | 44 | 36 |   8 | 52
+Chapecoense      | 38 | 13 | 13 | 12 | 49 | 56 |  -7 | 52
+Cruzeiro         | 38 | 14 |  9 | 15 | 48 | 49 |  -1 | 51
+Fluminense       | 38 | 13 | 11 | 14 | 45 | 45 |   0 | 50
+Sport Recife     | 38 | 13 |  8 | 17 | 49 | 55 |  -6 | 47
+Coritiba         | 38 | 11 | 13 | 14 | 41 | 42 |  -1 | 46
+Vitória          | 38 | 12 |  9 | 17 | 51 | 53 |  -2 | 45
+Internacional    | 38 | 11 | 10 | 17 | 35 | 41 |  -6 | 43
+Figueirense      | 38 |  8 | 13 | 17 | 30 | 50 | -20 | 37
+Santa Cruz       | 38 |  8 |  7 | 23 | 45 | 69 | -24 | 31
+América-MG       | 38 |  7 |  7 | 24 | 23 | 58 | -35 | 28
+```
+
 ## Sum & Product
 ```
 let array = [1, 2, 3]
@@ -418,6 +565,9 @@ students = [
 ]
 
 console.log(calcAverage(students)) //=> 7.3
+console.log(calcMin(students))     //=>
+console.log(calcMin(students, 5))  //=>
+console.log(calcMax(students))     //=>
 ```
 
 ## Apply bold
@@ -471,3 +621,4 @@ console.log(order.total('office')) //=> 106
 
 * [Exercism](http://exercism.io/languages/ecmascript/exercises)
 * [Javscript Koan](https://github.com/mrdavidlaing/javascript-koans)
+* [URI Online Judge](https://www.urionlinejudge.com.br/judge/en/categories)

@@ -5,23 +5,28 @@ As questões foram inspiradas nessa prova https://github.com/ifpb/ls-20162/blob/
 ## Processing Text
 ```
 console.log(processText('upperCase', 'fulano\nifpb jp')
-//=> FULANO
-//=> IFPB JP
+//=>
+// FULANO
+// IFPB JP
 
 console.log(processText('lowerCase', 'FULANO\nIFPB JP')
-//=> fulano
-//=> ifpb jp
+//=>
+// fulano
+// ifpb jp
 
 console.log(processText('camelCase', 'FULANO\nIFPB JP')
-//=> Fulano
-//=> Ifpb Jp
+//=>
+// Fulano
+// Ifpb Jp
 
 console.log(processText('snakeCase', 'FULANO\nIFPB JP')
-//=> FULANO_IFPB_JP
+//=>
+// FULANO_IFPB_JP
 
 console.log(processText('reverse', 'FULANO\nIFPB')
-//=> BPFI
-//=> ONALUF
+//=>
+// BPFI
+// ONALUF
 
 console.log(processText('countWords', 'fulano\nifpb')
 //=> 2
@@ -166,7 +171,6 @@ const entities = {
 }
 
 console.log(showEntitiesTable(entities))
-
 //=>
 // 01 Á  &Aacute;   &193;   &c1;
 // 02 Á   &Aacute   &193;   &c1;
