@@ -45,7 +45,11 @@ console.log(showStudentTable(data))
 
 function showStudentName(data){
   let maxLength = data.students.reduce(
-    (max, student) => student.name.length > max ? student.name.length : max,
+    (max, student) => {
+      return student.name.length > max ?
+                student.name.length :
+                max
+    },
     0
   )
 

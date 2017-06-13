@@ -336,8 +336,8 @@ diffMonth(last, now) //=> 5
 
 ## IP
 ```
-ip2decimal(192.168.0.1) //=> 3232235521
-ip2decimal(192.168.0.2) //=> 3232235522
+ip2decimal('192.168.0.1') //=> 3232235521
+ip2decimal('192.168.0.2') //=> 3232235522
 
 decimal2ip(3232235521) //=> 192.168.0.1
 decimal2ip(3232235522) //=> 192.168.0.2
@@ -351,7 +351,7 @@ withdraw(1280) //=> [[100, 12], [50, 1], [20, 1], [10, 1]]
 ## Exam
 ```
 studend1 = {q1: 'a', q2: 'b', q3: 'b', q4: 'b', q5: 'b'}
-studend1 = {q1: 'c', q2: 'b', q3: 'a', q4: 'c', q5: 'd'}
+studend2 = {q1: 'c', q2: 'b', q3: 'a', q4: 'c', q5: 'd'}
 weight =   {q1:  2 , q2:  2 , q3:  2 , q4:  2 , q5:  2 }
 answer =   {q1: 'a', q2: 'b', q3: 'a', q4: 'c', q5: 'd'}
 
@@ -363,6 +363,7 @@ weightedAvg(studend2, weight, answer) //=> 8
 ## Cipher
 ```
 console.log(rot('abc', 2)) //=> cde
+console.log(rot('xyz', 2)) //=> zab
 ```
 
 ## Figure Text
@@ -473,7 +474,7 @@ Teams are ranked by PTS, W, GD, and GF. If points are equal between two or more 
 ```
 cont standings = // TODO
 console.log(firstTeam(standings))
-//=> Chapecoense
+//=> Palmeiras
 
 console.log(showStading(standings))
 //=>

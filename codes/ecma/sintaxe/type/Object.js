@@ -166,6 +166,18 @@ for(let field of Object.keys(post)){
 // 'lorem ipsum dolor',
 // 'Nunc accumsan in ipsum a mattis...'
 
+
+let post = {
+  title: 'lorem ipsum dolor',
+  text: 'Nunc accumsan in ipsum a mattis...'
+}
+for(let field of Object.entries(post)){
+  console.log(post[field])
+}
+//=>
+// 'lorem ipsum dolor',
+// 'Nunc accumsan in ipsum a mattis...'
+
 let people = [
   {
     name: 'Mike Smith',

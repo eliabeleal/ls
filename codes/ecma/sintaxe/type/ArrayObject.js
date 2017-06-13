@@ -106,6 +106,7 @@ for([key, value] of [1,2,3].entries()){console.log(`${key} => ${value}`)}
 // '2 => 3'
 
 // Array.prototype.map
+console.log([1, 2, 3, 4, 5, 6].map(function(value){ value * 2}))
 console.log([1, 2, 3, 4, 5, 6].map((value) => value * 2))
       //=> [ 2, 4, 6, 8, 10, 12 ]
 
