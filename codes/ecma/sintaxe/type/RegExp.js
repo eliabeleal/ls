@@ -9,21 +9,47 @@
 // http://ivanzuzak.info/noam/webapps/fsm_simulator/
 // http://ivanzuzak.info/noam/webapps/fsm2regex/
 
-/ab+c/i;
-new RegExp('ab+c', 'i');
-new RegExp(/ab+c/, 'i');
+/abc/i;
+new RegExp('abc', 'i');
+new RegExp(/abc/, 'i');
 
-// flag
+// FLAGS
 // g global match
+console.log("\nIs th\nis h\nis?".match(/is/))
+//=> [ 'is', index: 7, input: '\nIs th\nis h\nis?' ]
+console.log("\nIs th\nis h\nis?".match(/is/g))
+//=> [ 'is', 'is' ]
+
 // i ignore case
+console.log("\nIs th\nis h\nis?".match(/is/gi))
+//=> [ 'Is', 'is', 'is' ]
+
 // m multiline, makes ^ and $ match lines rather than the whole string
-  "\nIs th\nis h\nis?".match(/^is/gm)
-  "\nIs th\nis h\nis?".match(/^is/g)
+console.log("Is th\nis h\nis?".match(/^is/gi))
+//=> [ 'Is' ]
+console.log("Is th\nis h\nis?".match(/^is/gim))
+//=> [ 'Is', 'is', 'is' ]
+
 // u unicode
-  /\u{61}/u.test('a')
-  /\u{61}/.test('a')
-// y sticky
-  // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky
+console.log("\nIs th\nis h\nis?".match(/^\u{69}s/gim))
+//=> null
+console.log("\nIs th\nis h\nis?".match(/^\u{69}s/gimu))
+//=> [ 'Is', 'is', 'is' ]
+
+// y sticky https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky
+let regex = /is/g
+console.log("\nIs th\nis h\nis?".match(regex))
+//=> [ 'is', 'is' ]
+
+// let regex = /is/gy
+// regex.lastIndex = 0
+// console.log("\nIs th\nis h\nis?".match(regex))
+var str = '#foo#'
+var regex = /foo/y
+regex.lastIndex = 1
+console.log(regex.test(str))
+//=> true
+
 
 // Character Classes
 . // dot, matches any single character except line terminators: \n, \r, \u2028 or \u2029.
@@ -164,11 +190,18 @@ x(?!y) // negative lookahead, x only if x is not followed by y
 01001000
 01001-000
 01.001-000
-/^\d{2}\.?\d{3}-?\d{3}$/
+/^(\d{8}|\d{2}\.?\d{3}-\d{3})$/
+
+// Byte
+01010101
+11110000
+
+/[01]{8}/
 
 // cpf
 11122233344
 111.222.333-44
+/^\d{11}|\d{3}\.\d{3}\.\d{3}-\d{2}$/
 /^(\d{9}|\d{3}(\.\d{3}){2}-\d{2})$/
 
 // hora
@@ -182,18 +215,22 @@ x(?!y) // negative lookahead, x only if x is not followed by y
 01/31/1970
 01-31-1970
 1970-01-31
-/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{4}|(0[1-9]|[12]\d|3[01])-(0[1-9]|1[0-2])-\d{4}$/
+/^((0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{4}|(0[1-9]|[12]\d|3[01])-(0[1-9]|1[0-2])-\d{4})$/
 // o sonho http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
 
 // number
-1000000 // \d+
-10
-1.000.000
-1.000.000,0
-1.000.000,10
-/^(\d+|\d{1,3}(\.\d{3})*)(,\d{1,2})?$/
-
-1.100
+regex = /^(\d+|\d{1,3}(\.\d{3})*)(,\d{1,2})?$/
+console.log(regex.test("000"))
+console.log(regex.test("a10,000"))
+console.log(regex.test("a10,000"))
+console.log(regex.test("10,000"))
+console.log(regex.test("1000000"))
+console.log(regex.test("10"))
+console.log(regex.test("10,0"))
+console.log(regex.test("1.000.000"))
+console.log(regex.test("1.000.000,0"))
+console.log(regex.test("1.000.000,10"))
+console.log(regex.test("1.100"))
 
 // currency
 R$ 1.000.000,10
