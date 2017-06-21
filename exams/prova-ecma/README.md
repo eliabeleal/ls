@@ -16,14 +16,16 @@ Leia as observações a seguir:
 
 ### DESCRIÇÃO DA PROVA
 
-As questões das provas estão divididas em pastas neste [link](code.zip). Contudo, para executar cada questão será necessário fazer a seguinte instalação:
+As questões das provas estão divididas em pastas neste [link](code.zip). Contudo, para executar cada questão será necessário fazer as seguintes execuções:
 
 ```
-$ npm install jasmine -g
+$ node -v # deve estar atualizado!
+$ npm install yarn -g
+$ yarn install
 ```
 
-Após a instalação para executar os cenários de validação de cada questão você deve usar o `jasmine`, por exemplo, na questão do `cipher` deve-se executar o comando.
+Após a instalação para executar os cenários de validação de cada questão use o `yarn` por meio do comando:
 
 ```
-$ jasmine cipher/cipher.spec.js
+$ yarn run test
 ```

@@ -1,10 +1,10 @@
-let School = require('./cipher')
+let Cipher = require('./cipher')
 
 describe('Cipher', function() {
   let cipher
 
   beforeEach(function() {
-    chiper = new Cipher()
+    cipher = new Cipher()
   })
 
   it('cipher text with rot2', function() {
