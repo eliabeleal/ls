@@ -620,6 +620,33 @@ console.log(order.total('eletronics')) //=> 120
 console.log(order.total('office')) //=> 106
 ```
 
+## Include CEP
+```
+let message = `Lorem ipsum 12345-123 dolor sit amet, 12345123 consectetur adipisicing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
+
+scanCEP(message) //=> {count: 2, values: ['12345-123', '12345123']}
+```
+
+## Format Date
+```
+let message = `Lorem ipsum 01/01/2017 dolor sit amet, 2017-01-02 consectetur adipisicing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
+
+scanDate(message) //=> {count: 2, values: ['01/01/2017', '02/01/2017']}
+```
+
+## Validador de CPF 2
+```
+// Valide o CPF primeiro usando o regex e depois o cálculo do dígito verificador
+// http://ghiorzi.org/DVnew.htm
+validateCPF('12345678909') //=> true
+```
+
+## Search Atom
+```
+// Coloque esse texto no atom e veja se é possível procurar datas com RegExp
+let message = `Lorem ipsum 01/01/2017 dolor sit amet, 2017-01-02 consectetur adipisicing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
+```
+
 ## Sugestões
 
 * [Exercism](http://exercism.io/languages/ecmascript/exercises)

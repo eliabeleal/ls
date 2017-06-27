@@ -1,176 +1,25 @@
+// REGEXP
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
 // http://www.regular-expressions.info/reference.html
 // http://regexr.com/
 // https://regex101.com/
-// https://regexper.com/ rails road diagram
+// https://regexper.com/ (rails road diagram)
   // https://atom.io/packages/regex-railroad-diagram
   // apm install regex-railroad-diagram
 // http://ivanzuzak.info/noam/webapps/regex_simplifier/
 // http://ivanzuzak.info/noam/webapps/fsm_simulator/
 // http://ivanzuzak.info/noam/webapps/fsm2regex/
 
-/abc/i;
-new RegExp('abc', 'i');
-new RegExp(/abc/, 'i');
+// Syntax
+/abc/i
+new RegExp('abc', 'i')
+new RegExp(/abc/, 'i')
 
-// FLAGS
-// g global match
-console.log("\nIs th\nis h\nis?".match(/is/))
-//=> [ 'is', index: 7, input: '\nIs th\nis h\nis?' ]
-console.log("\nIs th\nis h\nis?".match(/is/g))
-//=> [ 'is', 'is' ]
-
-// i ignore case
-console.log("\nIs th\nis h\nis?".match(/is/gi))
-//=> [ 'Is', 'is', 'is' ]
-
-// m multiline, makes ^ and $ match lines rather than the whole string
-console.log("Is th\nis h\nis?".match(/^is/gi))
-//=> [ 'Is' ]
-console.log("Is th\nis h\nis?".match(/^is/gim))
-//=> [ 'Is', 'is', 'is' ]
-
-// u unicode
-console.log("\nIs th\nis h\nis?".match(/^\u{69}s/gim))
-//=> null
-console.log("\nIs th\nis h\nis?".match(/^\u{69}s/gimu))
-//=> [ 'Is', 'is', 'is' ]
-
-// y sticky https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky
-let regex = /is/g
-console.log("\nIs th\nis h\nis?".match(regex))
-//=> [ 'is', 'is' ]
-
-// let regex = /is/gy
-// regex.lastIndex = 0
-// console.log("\nIs th\nis h\nis?".match(regex))
-var str = '#foo#'
-var regex = /foo/y
-regex.lastIndex = 1
-console.log(regex.test(str))
-//=> true
-
-
-// Character Classes
-. // dot, matches any single character except line terminators: \n, \r, \u2028 or \u2029.
-  /l.t/ // let lot lt => let, lot
-\d // digit [0-9]
-  /ifpb\d/ // ifpb1 ifpb2 ifpb@ => ifpb1, ifpb2
-\D // digit [^0-9]
-  /ifpb\D/ // ifpb1 ifpb2 ifpb@ => ifpb@
-\w // word [A-Za-z0-9_]
-  /\w@/ // w@ a@ ?@ => w@, a@
-\W // not word [^A-Za-z0-9_]
-  /\W@/ // w@ a@ ?@ => ?@
-\s // whitespace
-   // [ \f\n\r\t\v\u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]
-   // http://www.fileformat.info/info/unicode/category/Zs/list.htm
-   // single white space character, including space, tab, form feed, line feed and other Unicode spaces
-  /a\sa/ // a a aba => a a
-\S // not whitespace
-  /a\Sa/ // a a aba => aba
-\ //
-  /a\.a/  // a.a aba => a.a
-
-// Character Sets
-[] // character set
-  /[xyz]/ // abcdefghijklmnopqrstuvwxyz => x, y, z
-  /[a-c]/ // abcdefghijklmnopqrstuvwxyz => a, b, c
-  /[a-c12]/ // abcdefghijklmnopqrstuvwxyz0123456789 => a, b, c, 1, 2
-  /[0-9]/ // abcdefghijklmnopqrstuvwxyz0123456789 => 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-  /[A-Z]/ // ABCDEFGHIJKLMNOPQRSTUVWXYZ => A, B... Z
-  /[a-z]/ // ABCDEFGHIJKLMNOPQRSTUVWXYZ =>
-  /[A-Za-z0-9_]/ // ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_
-               //   => a, b, c... z, A, B, C... Z, 0, 1, 2... 9, _
-[^] // complemented character set
-  /[^xyz]/ // tuvwxyz => t, u, v, w
-  /[^7-9]/ // 0123456789 => 0, 1, 2, 3, 4, 5, 6
-  /[^A-Za-z0-9_]/ // !@#$qwert => !@#$
-
-// Alternation
-|
-  /x|y/ // abcdefghijklmnopqrstuvwxyz => x, y = [xy]
-  /green|red/ // red green blue => green, red != [green|red]
-
-// Boundaries
-^ // beginning
-  /^instituto/ // instituto federal => instituto
-  /^instituto/ // o instituto federal da paraíba =>
-  /^\w{4}/g // lorem\nipsum\ndolor => lore
-  /^\w{4}/gm // lorem\nipsum\ndolor => lore, ispu, dolo
-$ // end
-  /federal$/ // instituto federal => federal
-  /federal$/ // o instituto federal da paraíba =>
-\b // word boundary
-  /\ba\w*/ // apple, blackberry, cherry => apple
-  /\w*y\b/ // apple, blackberry, cherry => blackberry, cherry
-\B // non-word boundary
-  /\w*rr\B\w*/ // apple, blackberry, cherry => blackberry, cherry
-
-// Grouping and back references
-() // capturing group
-  /bab(y|ies)/ // baby, babies, boom => baby, babies
-
-\n // backreference
-   // http://www.regular-expressions.info/backref.html
-   // http://www.regular-expressions.info/backref2.html
-  /(\w)a\1/ // hah dad bad dab gag gab => hah, dad, gag
-  /<(p)>(.*)<\/\1>/ // <p>lorem ipsum</p> => <p>lorem ipsum</p>
-
-(?:x) // non-capturing group
-  /(?:http|ftp)://([^/\r\n]+)(/[^\r\n]*)?/
-    // "http://stackoverflow.com/" =>
-      // Match "http://stackoverflow.com/"
-      // Group 1: "stackoverflow.com"
-      // Group 2: "/"
-    // "http://stackoverflow.com/questions/tagged/regex" =>
-      // Match "http://stackoverflow.com/questions/tagged/regex"
-      // Group 1: "stackoverflow.com"
-      // Group 2: "/questions/tagged/regex"
-  /([0-9]+)(?:st|nd|rd|th)?/
-    // 1st =>
-      // Match = 1st
-      // Group 1: 1
-
-// Quantifiers
-x*
-  /<.*>/ // "<foo> <bar>" => "<foo> <bar>"
-  /\d*/ // abc12345678cde90fgh => 12345678, 90
-x+
-  /\w+@\w+/ // root@ifpb => root@ifpb
-  /\w+@\w+/ // root@1 => root@1
-  /\w+@\w+/ // root@ =>
-  /\w+/ // root@ifpb => root, ifpb
-  /\d+/ // abc12345678cde90fgh => 12345678, 90
-x?
-  /\w+@\w?/ // root@ifpb => root@i
-  /\w+@\w?/ // root@1 => root@1
-  /\w+@\w?/ // root@ => root@
-x{n}
-  /\d{5}/ // abc12345678cde90fgh => 12345
-x{n,}
-  /\d{5,}/ // abc12345678cde90fgh => 12345678
-x{n,m}
-  /\d{1,5}/ // abc12345678cde90fgh => 12345, 678, 90
-x*?
-  /<.*?>/ // "<foo> <bar>" => "<foo>", "<bar>"
-x+?
-  /\d+?/ // abc12345678cde90fgh => 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
-x??
-  /\d??/ // 12 => "", "", ""
-x{n}?
-  /\d{5}/ // abc12345678cde90fgh => 12345
-x{n,}?
-  /\d{5,}/ // abc12345678cde90fgh => 12345
-x{n,m}?
-  /\d{1,5}/ // abc12345678cde90fgh => 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
-
-// Assertions
-x(?=y) // positive lookahead, x only if x is followed by y
-  /\d(?=px)/ // 1pt 2px 3em 4px => 2, 4
-
-x(?!y) // negative lookahead, x only if x is not followed by y
-  /\d(?!px)/ // 1pt 2px 3em 4px =>, 1, 3
+// Matches
+console.log("ab".match(/abc/))        //=> null
+console.log("abc".match(/abc/))       //=> [ 'abc', index: 0, input: 'abc' ]
+console.log("abcabcab".match(/abc/))  //=> [ 'abc', index: 0, input: 'abcabcab' ]
+console.log("abcabcab".match(/abc/g)) //=> [ 'abc', 'abc' ]
 
 // Patterns
 // https://code.tutsplus.com/tutorials/8-regular-expressions-you-should-know--net-6149
@@ -280,7 +129,14 @@ Minimum 8 and Maximum 10 characters at least 1 Uppercase Alphabet, 1 Lowercase A
 /\w+/.test("ifpb")
 /\w+/.test("!@#$")
 
-/\w+/.exec("ifpb")
+message = "ifpb-jp, ifpb-cg"
+pattern = /\w+-\w+/g
+console.log(pattern.exec(message))
+console.log(pattern.lastIndex)
+console.log(pattern.exec(message))
+console.log(pattern.lastIndex)
+console.log(pattern.exec(message))
+console.log(pattern.lastIndex)
 /\w+/.exec("!@#$")
 
 // String
