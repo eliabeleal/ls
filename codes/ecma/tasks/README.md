@@ -620,6 +620,14 @@ console.log(order.total('eletronics')) //=> 120
 console.log(order.total('office')) //=> 106
 ```
 
+## Uppercase with Regexp
+```
+// match, split
+let message = 'lorem ipsum\ndolor'
+toCamelCase(message) //=> Lorem Ipsum\nDolor
+```
+
+
 ## Include CEP
 ```
 let message = `Lorem ipsum 12345-123 dolor sit amet, 12345123 consectetur adipisicing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`

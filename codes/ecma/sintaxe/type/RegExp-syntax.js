@@ -13,11 +13,11 @@
 // SYNTAX
 //   FLAGS (g, i, m, u, y)
 //   CHARACTER CLASSES (. , \d, |D, \w, |W, \s, \S, \)
-//   CHARACTER SET ()
-//   BOUNDARIES ()
+//   CHARACTER SET ([], [^])
+//   BOUNDARIES (^, $)
 //   ALTERNATION (|)
-//   GROUPING AND BACK REGERENCES ()
-//   QUANTIFIERS ()
+//   GROUPING AND BACK REGERENCES (())
+//   QUANTIFIERS (*, +, ?, {n}, {n, }, {n, m})
 //   ASSERTIONS ()
 
 // FLAGS

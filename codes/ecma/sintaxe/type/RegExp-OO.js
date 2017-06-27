@@ -29,11 +29,16 @@ console.log(pattern.lastIndex) //=> 0
 console.log(pattern.flags)     //=> i
 
 // RegExp.prototype.test()
-/\w+/.test("ifpb")
-/\w+/.test("!@#$")
+let message = 'ifpb'
+let pattern = /\w+/
+console.log(pattern.test(message)) //=> true
+
+let message = '!@#$'
+let pattern = /\w+/
+console.log(pattern.test(message)) //=> false
 
 // RegExp.prototype.exec()
-let message = "ifpb-jp, ifpb-cg"
+let message = 'ifpb-jp, ifpb-cg'
 let pattern = /\w+-\w+/g
 
 console.log(pattern.exec(message)) //=> [ 'ifpb-jp', index: 0, input: 'ifpb-jp, ifpb-cg' ]
@@ -76,6 +81,16 @@ console.log(message.match(pattern)) //=> [ '11:11:20' ]
 // String.prototype.replace()
 let message = 'mensagem <b>importante</b>'
 let result  = ''
+
+result = message.replace(/<b>|<\/b>/g, '')
+console.log(result)
+
+let message = 'mensagem <b>importante</b>'
+let result  = ''
+
+result = message.replace("<b>", "<i>")
+result = result.replace("</b>", "</i>")
+console.log(result)
 
 result = message.replace(/<b>(.*)<\/b>/, '<i>importante</i>')
 console.log(message) //=> mensagem <b>importante</b>
