@@ -116,8 +116,10 @@ console.log(result)  //=> 2017-12-01
 let message = 'mensagem <b>importante</b> e <b>interessante</b>'
 let pattern = /<b>(.*)<\/b>/
 console.log(message.search(pattern)) //=> 9
+
 pattern = /<b>(.*)<\/b>/g
 console.log(message.search(pattern)) //=> 9
+
 pattern = /ifpb/
 console.log(message.search(pattern)) //=> -1
 

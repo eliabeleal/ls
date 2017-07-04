@@ -21,7 +21,7 @@
       * [Date](type/Date.js)
     * Text processing
       * [String](type/StringObject.js)
-      * [RegExp](type/RegExp.js)
+      * RegExp: [OO](type/RegExp-OO.js), [Patterns](type/RegExp-patterns.js) e [Syntax](type/RegExp-syntax.js)
     * Indexed collections
       * [Typed Array](type/Array-Typed.js)
     * Keyed collections

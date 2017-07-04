@@ -620,7 +620,7 @@ console.log(order.total('eletronics')) //=> 120
 console.log(order.total('office')) //=> 106
 ```
 
-## Uppercase with Regexp
+## Camelcase with Regexp
 ```
 // match, split
 let message = 'lorem ipsum\ndolor'
@@ -630,14 +630,14 @@ toCamelCase(message) //=> Lorem Ipsum\nDolor
 
 ## Include CEP
 ```
-let message = `Lorem ipsum 12345-123 dolor sit amet, 12345123 consectetur adipisicing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
+let message = `Lorem ipsum 12345-123 dolor sit amet, 12345123 consectetur.`
 
 scanCEP(message) //=> {count: 2, values: ['12345-123', '12345123']}
 ```
 
 ## Format Date
 ```
-let message = `Lorem ipsum 01/01/2017 dolor sit amet, 2017-01-02 consectetur adipisicing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
+let message = `Lorem ipsum 01/01/2017 dolor sit amet, 2017-01-02 consectetur.`
 
 scanDate(message) //=> {count: 2, values: ['01/01/2017', '02/01/2017']}
 ```
@@ -649,10 +649,12 @@ scanDate(message) //=> {count: 2, values: ['01/01/2017', '02/01/2017']}
 validateCPF('12345678909') //=> true
 ```
 
-## Search Atom
+## Search on Tools
 ```
 // Coloque esse texto no atom e veja se é possível procurar datas com RegExp
-let message = `Lorem ipsum 01/01/2017 dolor sit amet, 2017-01-02 consectetur adipisicing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
+// http://matt.might.net/articles/sculpting-text/ (grep, awk, sed, vim, emacs)
+
+let message = `Lorem ipsum 01/01/2017 dolor sit amet, 2017-01-02 consectetur.`
 ```
 
 ## Sugestões

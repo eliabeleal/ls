@@ -11,14 +11,15 @@
 // http://ivanzuzak.info/noam/webapps/fsm2regex/
 
 // SYNTAX
-//   FLAGS (g, i, m, u, y)
-//   CHARACTER CLASSES (. , \d, |D, \w, |W, \s, \S, \)
-//   CHARACTER SET ([], [^])
-//   BOUNDARIES (^, $)
-//   ALTERNATION (|)
-//   GROUPING AND BACK REGERENCES (())
-//   QUANTIFIERS (*, +, ?, {n}, {n, }, {n, m})
-//   ASSERTIONS ()
+//   FLAGS             g, i, m, u, y
+//   CHARACTER CLASSES . , \d, |D, \w, |W, \s, \S, \
+//   CHARACTER SET     [], [^]
+//   BOUNDARIES        ^, $, \b, |B
+//   ALTERNATION       |
+//   GROUPING AND BACK (), \n, (?:x)
+//       REGERENCES
+//   QUANTIFIERS       *, +, ?, {n}, {n, }, {n, m}, x*?, x+?, x??, x{n}?, x{n,}?, x{n,m}?
+//   ASSERTIONS        x(?=y), x(?!y)
 
 // FLAGS
 // g global match
@@ -127,44 +128,44 @@ console.log(message.match(pattern)) //=> [ 'a.a' ]
 
 // CHARACTER SET
 // [] character set
-let message  = 'abcdefghijklmnopqrstuvwxyz'
+let message = 'abcdefghijklmnopqrstuvwxyz'
 let pattern = /[xyz]/g
 console.log(message.match(pattern)) //=> [ 'x', 'y', 'z' ]
 
-let message  = 'abcdefghijklmnopqrstuvwxyz'
+let message = 'abcdefghijklmnopqrstuvwxyz'
 let pattern = /[a-c]/g
 console.log(message.match(pattern)) //=> [ 'a', 'b', 'c' ]
 
-let message  = 'abcdefghijklmnopqrstuvwxyz0123456789'
+let message = 'abcdefghijklmnopqrstuvwxyz0123456789'
 let pattern = /[a-c12]/g
 console.log(message.match(pattern)) //=> [ 'a', 'b', 'c', '1', '2' ]
 
-let message  = 'abcdefghijklmnopqrstuvwxyz0123456789'
+let message = 'abcdefghijklmnopqrstuvwxyz0123456789'
 let pattern = /[0-9]/g // \d
 console.log(message.match(pattern)) //=> [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
 
-let message  = 'abcdefghijklmnopqrstuvwxyzABC'
+let message = 'abcdefghijklmnopqrstuvwxyzABC'
 let pattern = /[A-Z]/g
 console.log(message.match(pattern)) //=> [ 'A', 'B', 'C' ]
 
-let message  = 'abcABCDEFGHIJKLMNOPQRSTUVWXYZ'
+let message = 'abcABCDEFGHIJKLMNOPQRSTUVWXYZ'
 let pattern = /[a-z]/g
 console.log(message.match(pattern)) //=> [ 'a', 'b', 'c' ]
 
-let message  = '0123abcABC!@#'
+let message = '0123abcABC!@#'
 let pattern = /[A-Za-z0-9_]/g // \w
 console.log(message.match(pattern)) //=> [ '0', '1', '2', '3', 'a', 'b', 'c', 'A', 'B', 'C' ]
 
 // [^] complemented character set
-let message  = 'tuvwxyz'
+let message = 'tuvwxyz'
 let pattern = /[^xyz]/g
 console.log(message.match(pattern)) //=> [ 't', 'u', 'v', 'w' ]
 
-let message  = '0123456789'
+let message = '0123456789'
 let pattern = /[^7-9]/g
 console.log(message.match(pattern)) //=> [ '0', '1', '2', '3', '4', '5', '6' ]
 
-let message  = '!@#$qwert'
+let message = '!@#$qwert'
 let pattern = /[^A-Za-z0-9_]/g // \W
 console.log(message.match(pattern)) //=> [ '!', '@', '#', '$' ]
 pattern = /[\W]/g
@@ -172,95 +173,194 @@ console.log(message.match(pattern)) //=> [ '!', '@', '#', '$' ]
 
 
 // ALTERNATION (|)
-let message  = 'abcdefghijklmnopqrstuvwxyz'
+let message = 'abcdefghijklmnopqrstuvwxyz'
 let pattern = /x|y/g
 console.log(message.match(pattern)) //=> [ 'x', 'y' ]
 
-let message  = 'red green blue'
+let message = 'red green blue'
 let pattern = /green|red/g // != [green|red]
 console.log(message.match(pattern)) //=> [ 'red', 'green' ]
 
-let message  = 'dark red green blue'
+let message = 'dark red green blue'
 let pattern = /(dark )?(green|red)/g
 console.log(message.match(pattern)) //=> [ 'dark red', 'green' ]
 
 
 // BOUNDARIES
-^ // beginning
-  /^instituto/ // instituto federal => instituto
-  /^instituto/ // o instituto federal da paraíba =>
-  /^\w{4}/g // lorem\nipsum\ndolor => lore
-  /^\w{4}/gm // lorem\nipsum\ndolor => lore, ispu, dolo
-$ // end
-  /federal$/ // instituto federal => federal
-  /federal$/ // o instituto federal da paraíba =>
-\b // word boundary
-  /\ba\w*/ // apple, blackberry, cherry => apple
-  /\w*y\b/ // apple, blackberry, cherry => blackberry, cherry
-\B // non-word boundary
-  /\w*rr\B\w*/ // apple, blackberry, cherry => blackberry, cherry
+// ^ beginning
+let message = 'instituto federal'
+let pattern = /^instituto/
+console.log(message.match(pattern)) //=> [ 'instituto', index: 0, input: 'instituto federal' ]
+
+let message = 'o instituto federal da paraíba'
+let pattern = /^instituto/
+console.log(message.match(pattern)) //=> null
+
+let message = 'lorem\nipsum\ndolor'
+let pattern = /^\w{4}/g
+console.log(message.match(pattern)) //=> [ 'lore' ]
+
+let message = 'lorem\nipsum\ndolor'
+let pattern = /^\w{4}/gm
+console.log(message.match(pattern)) //=> [ 'lore', 'ipsu', 'dolo' ]
+
+// $ end
+let message = 'instituto federal'
+let pattern = /federal$/
+console.log(message.match(pattern)) //=> [ 'federal', index: 10, input: 'instituto federal' ]
+
+let message = 'o instituto federal da paraíba'
+let pattern = /federal$/
+console.log(message.match(pattern)) //=> null
+
+// \b word boundary
+let message = 'apple, blackberry, cherry'
+let pattern = /\ba\w*/g
+console.log(message.match(pattern)) //=> [ 'apple' ]
+
+let message = 'apple, blackberry, cherry'
+let pattern = /\w*y\b/g
+console.log(message.match(pattern)) //=> [ 'blackberry', 'cherry' ]
+
+// \B non-word boundary
+let message = 'apple, blackberry, cherry, charr'
+let pattern = /\w*rr\B\w*/g
+console.log(message.match(pattern)) //=> [ 'blackberry', 'cherry' ]
 
 // GROUPING AND BACK REGERENCES
-() // capturing group
-  /bab(y|ies)/ // baby, babies, boom => baby, babies
+// () capturing group
+let message = 'baby, babies, boom'
+let pattern = /bab(y|ies)/g
+console.log(message.match(pattern)) //=> [ 'baby', 'babies' ]
 
-\n // backreference
-   // http://www.regular-expressions.info/backref.html
-   // http://www.regular-expressions.info/backref2.html
-  /(\w)a\1/ // hah dad bad dab gag gab => hah, dad, gag
-  /<(p)>(.*)<\/\1>/ // <p>lorem ipsum</p> => <p>lorem ipsum</p>
+// \n backreference
+// http://www.regular-expressions.info/backref.html
+// http://www.regular-expressions.info/backref2.html
+let message = 'hah dad bad dab gag gab'
+let pattern = /(\w)a\1/g
+console.log(message.match(pattern)) //=> [ 'hah', 'dad', 'gag' ]
 
-(?:x) // non-capturing group
-  /(?:http|ftp)://([^/\r\n]+)(/[^\r\n]*)?/
-    // "http://stackoverflow.com/" =>
-      // Match "http://stackoverflow.com/"
-      // Group 1: "stackoverflow.com"
-      // Group 2: "/"
-    // "http://stackoverflow.com/questions/tagged/regex" =>
-      // Match "http://stackoverflow.com/questions/tagged/regex"
-      // Group 1: "stackoverflow.com"
-      // Group 2: "/questions/tagged/regex"
-  /([0-9]+)(?:st|nd|rd|th)?/
-    // 1st =>
-      // Match = 1st
-      // Group 1: 1
+let message = '<b>lorem</b> and <i>ipsum</i> and <span>dolor</span>'
+let pattern = /<(\w+)>(.*)<\/\1>/g
+console.log(message.match(pattern)) //=> [ '<b>lorem</b>', '<i>ipsum</i>', '<span>dolor</span>' ]
+
+// (?:x) non-capturing group
+let message = 'http://stackoverflow.com/'
+let pattern = /(?:http|ftp):\/\/([^\/\r\n]+)(\/[^\r\n]*)?/
+console.log(message.match(pattern))
+//=>
+// [ 'http://stackoverflow.com/', 'stackoverflow.com', '/', index: 0, input: 'http://stackoverflow.com/' ]
+// $1 'stackoverflow.com'
+// $2 '/'
+
+let message = 'http://stackoverflow.com/questions/tagged/regex'
+let pattern = /(?:http|ftp):\/\/([^\/\r\n]+)(\/[^\r\n]*)?/
+console.log(message.match(pattern))
+//=>
+// [ 'http://stackoverflow.com/questions/tagged/regex', 'stackoverflow.com', '/questions/tagged/regex', index: 0, input: 'http://stackoverflow.com/questions/tagged/regex' ]
+// $1 'stackoverflow.com'
+// $2 '/questions/tagged/regex'
+
+let message = '1st'
+let pattern = /([0-9]+)(?:st|nd|rd|th)?/
+console.log(message.match(pattern))
+//=>
+// [ '1st', '1', index: 0, input: '1st' ]
+// $1 '1'
+
 
 // QUANTIFIERS
-x*
-  /<.*>/ // "<foo> <bar>" => "<foo> <bar>"
-  /\d*/ // abc12345678cde90fgh => 12345678, 90
-x+
-  /\w+@\w+/ // root@ifpb => root@ifpb
-  /\w+@\w+/ // root@1 => root@1
-  /\w+@\w+/ // root@ =>
-  /\w+/ // root@ifpb => root, ifpb
-  /\d+/ // abc12345678cde90fgh => 12345678, 90
-x?
-  /\w+@\w?/ // root@ifpb => root@i
-  /\w+@\w?/ // root@1 => root@1
-  /\w+@\w?/ // root@ => root@
-x{n}
-  /\d{5}/ // abc12345678cde90fgh => 12345
-x{n,}
-  /\d{5,}/ // abc12345678cde90fgh => 12345678
-x{n,m}
-  /\d{1,5}/ // abc12345678cde90fgh => 12345, 678, 90
-x*?
-  /<.*?>/ // "<foo> <bar>" => "<foo>", "<bar>"
-x+?
-  /\d+?/ // abc12345678cde90fgh => 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
-x??
-  /\d??/ // 12 => "", "", ""
-x{n}?
-  /\d{5}/ // abc12345678cde90fgh => 12345
-x{n,}?
-  /\d{5,}/ // abc12345678cde90fgh => 12345
-x{n,m}?
-  /\d{1,5}/ // abc12345678cde90fgh => 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+// x*
+let pattern = /<.*>/g
+let message = '<foo> <bar> <>'
+console.log(message.match(pattern)) //=> [ '<foo> <bar> <>' ]
+
+// x*?
+let pattern = /<.*?>/g
+let message = '<foo> <bar> <>'
+console.log(message.match(pattern)) //=> [ '<foo>', '<bar>', '<>' ]
+
+// x+
+let pattern = /\w+@\w+/g
+let message
+
+message = 'root@ifpb'
+console.log(message.match(pattern)) //=> [ 'root@ifpb' ]
+message = 'root@i'
+console.log(message.match(pattern)) //=> [ 'root@i' ]
+message = 'root@'
+console.log(message.match(pattern)) //=> null
+
+let pattern = /\w+/g
+let message = 'root@ifpb'
+console.log(message.match(pattern)) //=> [ 'root', 'ifpb' ]
+
+let pattern = /\d+/g
+let message = 'abc12345678cde90fgh'
+console.log(message.match(pattern)) //=> [ '12345678', '90' ]
+
+// x+?
+let pattern = /\d+?/g
+let message = 'abc12345678cde90fgh'
+console.log(message.match(pattern)) //=> [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' ]
+
+// x?
+let pattern = /\d?/
+let message = '12'
+console.log(message.match(pattern)) //=> [ '1', index: 0, input: '12' ]
+
+// x??
+let pattern = /\d??/
+let message = '12'
+console.log(message.match(pattern)) //=> [ '', index: 0, input: '12' ]
+
+// x{n}
+let pattern = /\d{5}/g
+let message = 'abc12345678cde90fgh'
+console.log(message.match(pattern)) //=> [ '12345' ]
+
+// x{n}?
+let pattern = /\d{5}?/g
+let message = 'abc12345678cde90fgh'
+console.log(message.match(pattern)) //=> [ '12345' ]
+
+// x{n,}
+let pattern = /\d{5,}/g
+let message = 'abc12345678cde90fgh'
+console.log(message.match(pattern)) //=> [ '12345678' ]
+
+// x{n,}?
+let pattern = /\d{5,}?/g
+let message = 'abc12345678cde90fgh'
+console.log(message.match(pattern)) //=> [ '12345' ]
+
+// x{n,m}
+let pattern = /\d{1,5}/g
+let message = 'abc12345678cde90fgh'
+console.log(message.match(pattern)) //=> [ '12345', '678', '90' ]
+
+// x{n,m}?
+let pattern = /\d{1,5}?/g
+let message = 'abc12345678cde90fgh'
+console.log(message.match(pattern)) //=> [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' ]
+
 
 // ASSERTIONS
-x(?=y) // positive lookahead, x only if x is followed by y
-  /\d(?=px)/ // 1pt 2px 3em 4px => 2, 4
+// http://www.regular-expressions.info/lookaround.html
+// x(?=y) positive lookahead, x only if x is followed by y
+let pattern = /\d(?=px)/g
+let message = '1pt 2px 3em 4px 4xp 3'
+console.log(message.match(pattern)) //=> [ '2', '4' ]
 
-x(?!y) // negative lookahead, x only if x is not followed by y
-  /\d(?!px)/ // 1pt 2px 3em 4px =>, 1, 3
+let pattern = /(?=p)\w+/g
+let message = '1pt 2px 3em 4px 4xp 3'
+console.log(message.match(pattern)) //=> [ 'pt', 'px', 'px' , 'p' ]
+
+// x(?!y) negative lookahead, x only if x is not followed by y
+let pattern = /\d(?!px)/g
+let message = '1pt 2px 3em 4px 4xp 3'
+console.log(message.match(pattern)) //=> [ '1', '3', '4', '3' ]
+
+let pattern = /(?!p)\d+/g
+let message = '1pt 2px 3em 4px 4xp 3 px'
+console.log(message.match(pattern)) //=> [ '1', '2', '3', '4', '4', '3' ]
