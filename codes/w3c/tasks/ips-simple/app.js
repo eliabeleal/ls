@@ -6,5 +6,5 @@ let ips = [
 
 const tbody = document.querySelector('table tbody')
 const formatRow = datas => `<tr><td>${datas.join('</td><td>')}</td></tr>`
-const createRow = row => formatRow(Object.values(row))
+const createRow = ip => formatRow(Object.values(ip))
 tbody.innerHTML = ips.map(createRow).join('')
