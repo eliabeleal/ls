@@ -9,3 +9,8 @@ let ips = [
 ]
 
 // map & filter
+const tbody = document.querySelector('#ips tbody')
+const isStudent = address => address.origin === 'student'
+const formatRow = values => `<tr><td>${values.join('</td><td>')}</td></tr>`
+const createRow = address => formatRow(Object.values(address).slice(0, 2))
+tbody.innerHTML = ips.filter(isStudent).map(createRow).join('')
