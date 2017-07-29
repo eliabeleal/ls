@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="cep" placeholder="CEP">
+  <input type="text" id="address" placeholder="Rua">
+  <input type="text" id="city" placeholder="Cidade">
+  ....
+  <script>
+    const cepField = document.querySelector('#cep')
+
+    cepField.addEventListener('blur', () => {
+      let cep = cepField.value
+      // https://viacep.com.br/ws/01001000/json/
+      let url = `https://viacep.com.br/ws/${cep}/json/`
+      console.log(url);
+    })
+  </script>
+</body>
+</html>
