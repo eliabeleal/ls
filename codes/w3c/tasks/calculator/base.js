@@ -3,6 +3,7 @@ const result = document.querySelector('h1')
 
 for(let digit of digits) {
   digit.addEventListener('click', function(event) {
+    event.target.blur()
     let target = event.target.innerHTML
     if(target == 'AC')
       result.innerHTML = '0'
