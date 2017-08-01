@@ -5,21 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    body {
+      background-color: #80deea;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main {
+      background-color: #fff;
+      padding: 30px;
+      width: 40%;
+    }
+
+    main form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    main form input[type=text], main form #cepError {
+      width: 50%;
+    }
+
+    main form input {
+      margin: 10px 0;
+      padding: 10px;
+    }
+
+    main form input[type=text]:nth-child(n+2) {
+      display: none;
+    }
+
+    main form #cep {
+
+    }
+    main form #cepError {
+      display: none;
+      color: rgba(255, 0, 0, 0.68);
+      font-family: sans-serif;
+      margin-top: -5px;
+    }
+  </style>
 </head>
 <body>
-  <input type="text" id="cep" placeholder="CEP">
-  <input type="text" id="address" placeholder="Rua">
-  <input type="text" id="city" placeholder="Cidade">
-  ....
+  <main>
+    <form action="">
+      <input type="text" id="cep" placeholder="CEP">
+      <div id="cepError">O CEP informado é invalido.</div>
+      <input type="text" id="street" placeholder="Rua">
+      <input type="text" id="number" placeholder="Número">
+      <input type="text" id="neighborhood" placeholder="Bairro">
+      <input type="text" id="state" placeholder="Estado">
+      <input type="text" id="city" placeholder="Cidade">
+      <input type="submit" value="Cadastrar">
+    </form>
+  </main>
   <script>
     const cepField = document.querySelector('#cep')
+    const cepErrorField = document.querySelector('#cepError')
+    const streetField = document.querySelector('#street')
+    const numberField = document.querySelector('#number')
+    const neighborhoodField = document.querySelector('#neighborhood')
+    const cityField = document.querySelector('#city')
+    const stateField = document.querySelector('#state')
+
+    cepField.focus()
 
     cepField.addEventListener('blur', () => {
       let cep = cepField.value
-      // https://viacep.com.br/ws/01001000/json/
-      let url = `https://viacep.com.br/ws/${cep}/json/`
-      console.log(url);
+
+      if(/\d{5}-?\d{3}/.test(cep)) {
+        loadCepInfo(cep)
+      } else {
+        showCepError()
+      }
+
+
     })
+
+    function loadCepInfo(cep){
+      let url = `https://viacep.com.br/ws/${cep}/json/`
+      fetch(url)
+        .then(res => res.json())
+        .then(cepInfo => {
+          cepField.style.border = '1px solid #C7C7CD'
+          cepField.style.backgroundColor = '#fff'
+          // cepField.style.outline = '#4D90FE -2px auto 5px'
+          // const cepFocusField = document.querySelector('#cep:focus')
+          // cepFocusField.style.outlineColor = 'rgb(77, 144, 254)'
+          // cepFocusField.style.outlineOffset = '-2px'
+          // cepFocusField.style.outlineStyle = 'auto'
+          // cepFocusField.style.outlineWidth = '5px'
+          cepErrorField.style.display = 'none'
+
+          numberField.style.display = 'block'
+          streetField.style.display = 'block'
+          neighborhoodField.style.display = 'block'
+          cityField.style.display = 'block'
+          stateField.style.display = 'block'
+
+          streetField.value = cepInfo.logradouro
+          neighborhoodField.value = cepInfo.bairro
+          cityField.value = cepInfo.localidade
+          stateField.value = cepInfo.uf
+
+          numberField.focus()
+        })
+        .catch(error => {
+          showCepError()
+        })
+    }
+
+    function showCepError(){
+      cepField.style.border = '1px solid #f00'
+      cepField.style.backgroundColor = 'rgba(255, 0, 0, .1)'
+      cepField.style.outline = 'none'
+      cepErrorField.style.display = 'block'
+
+      cepField.focus()
+    }
   </script>
 </body>
 </html>
